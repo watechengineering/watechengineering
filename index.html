@@ -4,168 +4,144 @@
 <meta charset="UTF-8">
 <title>Watech Engineering (UPJN) LLP</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="logo.png">
-
 <style>
-body{margin:0;font-family:Arial;background:#f5f8ff}
-a{text-decoration:none;color:inherit}
-
-/* TOP */
-.top{display:flex;justify-content:space-between;align-items:center;padding:10px 30px;background:#f1f7ff;border-bottom:3px solid #004c99}
-.logo{display:flex;align-items:center;gap:10px}
-.logo img{height:60px}
-.logo h1{margin:0;color:#003366}
-.search input{padding:7px}
-.search button{padding:7px;background:#004c99;color:#fff;border:none}
-
-/* MENU */
-nav{background:#004c99}
-nav ul{list-style:none;display:flex;margin:0;padding:0 20px}
-nav li{position:relative;padding:15px 20px;color:#fff;font-weight:bold}
-nav li:hover{background:#003366}
-nav li ul{
-display:none;
-position:absolute;
-top:50px;
-left:0;
-background:#004c99;
-list-style:none;
-padding:0;
-z-index:999;
+:root{
+ --bg:#fff; --text:#000; --blue:#004aad;
 }
-nav li:hover > ul{display:block;}
-nav li ul li{width:200px;white-space:nowrap}
-
-/* LAYOUT */
-.container{display:flex;max-width:1200px;margin:auto;padding:20px;gap:20px}
-.sidebar{width:260px;background:#fff;padding:15px;box-shadow:0 2px 6px rgba(0,0,0,.1)}
-.main{flex:1}
-
-/* SLIDER */
-.slider{height:350px;overflow:hidden;position:relative;margin-bottom:20px}
-.slider img{width:100%;height:350px;object-fit:cover;position:absolute;opacity:0;transition:1s}
-.slider img.active{opacity:1}
-
-/* NOTICE */
-.notice{background:#fff;padding:10px;margin-bottom:10px;border-left:5px solid #004c99}
-
-/* CONTENT */
-section{margin-bottom:40px}
-h2{color:#003366;border-bottom:2px solid #004c99;display:inline-block}
-
-/* CARDS */
-.cards{display:flex;flex-wrap:wrap;gap:20px}
-.card{background:#fff;padding:20px;width:220px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
-
-/* FOOTER */
-footer{background:#003366;color:#fff;text-align:center;padding:20px}
+body{margin:0;font-family:Arial;background:var(--bg);color:var(--text);}
+.dark{--bg:#111;--text:#fff;}
+.topbar{background:#000;color:#fff;font-size:13px;padding:5px 10px;display:flex;justify-content:space-between}
+.topbar a{color:#fff;margin:0 5px;text-decoration:none}
+header{background:var(--blue);color:#fff;padding:10px;display:flex;align-items:center}
+header img{height:60px;margin-right:10px}
+nav{background:#003380;}
+nav ul{list-style:none;margin:0;padding:0;display:flex}
+nav li{position:relative}
+nav a{color:#fff;padding:10px 15px;display:block;text-decoration:none}
+nav li:hover>ul{display:block}
+nav ul ul{display:none;position:absolute;background:#004aad;top:100%;left:0;min-width:180px}
+nav ul ul li{width:100%}
+.container{display:flex}
+.left{width:220px;background:#eee;padding:10px}
+.main{flex:1;padding:20px}
+.slider img{width:100%;height:300px;object-fit:cover}
+.card{background:#f2f2f2;padding:15px;margin:10px 0;border-radius:5px}
+footer{background:#003380;color:#fff;text-align:center;padding:10px}
 </style>
 </head>
 
 <body>
+<div class="topbar">
+<div>
+<a href="#">Skip to Main</a> |
+<a href="#">Screen Reader</a> |
+<a href="#">Sitemap</a>
+</div>
+<div>
+<button onclick="font(1)">A+</button>
+<button onclick="font(-1)">A-</button>
+<button onclick="theme()">Theme</button>
+<button onclick="lang('hi')">हिंदी</button>
+<button onclick="lang('en')">English</button>
+</div>
+</div>
 
-<div class="top">
-<div class="logo">
+<header>
 <img src="logo.png">
-<h1>Watech Engineering (UPJN) LLP</h1>
-</div>
-<div class="search">
-<input type="text" placeholder="Search">
-<button>🔍</button>
-</div>
-</div>
+<h2 id="title">Watech Engineering (UPJN) LLP</h2>
+</header>
 
 <nav>
 <ul>
-<li>Home</li>
-<li>About
-  <ul>
-    <li>Company Profile</li>
-    <li>Mission</li>
-    <li>Vision</li>
-  </ul>
+<li><a href="#" data-key="home">Home</a></li>
+<li><a href="#" data-key="about">About</a>
+<ul>
+<li><a href="#">Vision</a></li>
+<li><a href="#">Mission</a></li>
+</ul>
 </li>
-<li>Services
-  <ul>
-    <li>Water Supply</li>
-    <li>Wastewater</li>
-    <li>Storm Water</li>
-    <li>Structural Design</li>
-  </ul>
-</li>
-<li>Tenders</li>
-<li>Downloads</li>
-<li>Gallery</li>
-<li>Contact</li>
+<li><a href="#">Services</a></li>
+<li><a href="#">Tenders</a></li>
+<li><a href="#" data-key="contact">Contact</a></li>
 </ul>
 </nav>
 
 <div class="container">
-
-<div class="sidebar">
-<h3>Notice Board</h3>
-<div class="notice">📢 New Water Supply Tender – Kanpur</div>
-<div class="notice">📢 DPR Consultancy Open</div>
-<div class="notice">📢 Structural Design Projects Live</div>
-
-<h3>Quick Links</h3>
+<div class="left">
+<b>Quick Links</b>
 <ul>
-<li>e-Tender Portal</li>
-<li>Download Forms</li>
-<li>ISO Certificates</li>
-<li>Govt Orders</li>
+<li>Projects</li>
+<li>Downloads</li>
+<li>Notices</li>
 </ul>
 </div>
 
 <div class="main">
-
 <div class="slider">
-<img src="slide1.jpg" class="active">
-<img src="slide2.jpg">
-<img src="slide3.jpg">
+<img src="slide1.jpg">
 </div>
 
-<section>
-<h2>Our Services</h2>
-<div class="cards">
-<div class="card">Water Supply</div>
-<div class="card">Wastewater</div>
-<div class="card">Storm Water</div>
-<div class="card">Structural Design</div>
+<div class="card">
+<h3 data-key="about">About Us</h3>
+<p id="about"></p>
 </div>
-</section>
 
-<section>
-<h2>About Us</h2>
-<p>Watech Engineering (UPJN) LLP was Co-founded by India's two leading women business tycoons Mrs. Lakshmi & Mrs. Rashmi belonging from Kanpur city of Uttar Pradesh in 2025 with cordially support of Mr. Om Prakash, Miss. Pragati, Mrs. Shailja. We are An ISO 9001:2015 & 14001:2015 Certified Company Specialist in All types of Water Supply Works ( like Intake Well, WTP, CWR, OHT, PH etc.), All types of Sewerage Works (like Trunk line Laying, Construction of STP, IPS, MPS etc.), Construction of All types of Storm Water Drainage System, RO Water Management Sollution Works & All types of Govt. Order Supplier. Watech Engineering (UPJN) LLPis a trusted and performance-driven consultancy and construction company delivering advanced, sustainable and cost-effective water management solutions across India. We providing complete end-to-end services from concept to commissioning.</p>
-</section>
+<div class="card">
+<h3 data-key="vision">Vision</h3>
+<p id="vision"></p>
+</div>
 
-<section>
-<h2>Our Mission</h2>
-<p>Our mission is to design and deliver reliable, innovative and sustainable water infrastructure solutions that enhance quality of life and protect the environment. We are committed to providing end-to-end consultancy and construction services in Water Supply, Wastewater, Storm Water and RO Water Management.</p>
-</section>
+<div class="card">
+<h3 data-key="mission">Mission</h3>
+<p id="mission"></p>
+</div>
 
-<section>
-<h2>Our Vision</h2>
-<p>Our vision is to become one of India’s most trusted and leading water infrastructure and management companies, recognized for engineering excellence, integrity and sustainable practices.</p>
-</section>
-
+<div class="card">
+<h3 data-key="contact">Contact</h3>
+<p id="contact"></p>
+</div>
 </div>
 </div>
 
 <footer>
-© 2026 Watech Engineering (UPJN) LLP. All Rights Reserved.
+© 2026 Watech Engineering (UPJN) LLP
 </footer>
 
 <script>
-let slides=document.querySelectorAll(".slider img");
-let i=0;
-setInterval(()=>{
-slides[i].classList.remove("active");
-i=(i+1)%slides.length;
-slides[i].classList.add("active");
-},3000);
-</script>
+let size=16;
+function font(x){size+=x;document.body.style.fontSize=size+"px";}
+function theme(){document.body.classList.toggle("dark");}
 
+const LANG={
+en:{
+title:"Watech Engineering (UPJN) LLP",
+about:"Watech Engineering is a professional consultancy in water & infrastructure.",
+vision:"To be a trusted engineering partner.",
+mission:"Deliver quality and sustainable solutions.",
+contact:"Email: watechengineering@gmail.com | Phone: 9559222140",
+home:"Home"
+},
+hi:{
+title:"वाटेक इंजीनियरिंग (UPJN) LLP",
+about:"वाटेक इंजीनियरिंग जल एवं इंफ्रास्ट्रक्चर की प्रोफेशनल कंसल्टेंसी है।",
+vision:"एक भरोसेमंद इंजीनियरिंग पार्टनर बनना।",
+mission:"गुणवत्ता एवं टिकाऊ समाधान देना।",
+contact:"ईमेल: watechengineering@gmail.com | फोन: 9559222140",
+home:"मुख्य पृष्ठ"
+}
+};
+
+function lang(l){
+document.getElementById("title").innerText=LANG[l].title;
+about.innerText=LANG[l].about;
+vision.innerText=LANG[l].vision;
+mission.innerText=LANG[l].mission;
+contact.innerText=LANG[l].contact;
+document.querySelectorAll("[data-key]").forEach(e=>{
+e.innerText=LANG[l][e.dataset.key];
+});
+}
+lang("en");
+</script>
 </body>
 </html>

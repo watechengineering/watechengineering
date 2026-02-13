@@ -1,147 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Watech Engineering (UPJN) LLP</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="Logo%20New.png"/>
 <style>
-:root{
- --bg:#fff; --text:#000; --blue:#004aad;
-}
-body{margin:0;font-family:Arial;background:var(--bg);color:var(--text);}
-.dark{--bg:#111;--text:#fff;}
-.topbar{background:#000;color:#fff;font-size:13px;padding:5px 10px;display:flex;justify-content:space-between}
-.topbar a{color:#fff;margin:0 5px;text-decoration:none}
-header{background:var(--blue);color:#fff;padding:10px;display:flex;align-items:center}
-header img{height:60px;margin-right:10px}
-nav{background:#003380;}
-nav ul{list-style:none;margin:0;padding:0;display:flex}
+:root{--blue:#0a5cff;--dark:#111;--bg:#f4f7fb;--txt:#222}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--txt)}
+a{text-decoration:none;color:inherit}
+.topbar{background:#eee;font-size:13px;padding:6px 10px;display:flex;gap:10px;flex-wrap:wrap}
+.topbar button,.topbar a{border:0;background:#fff;padding:4px 8px;cursor:pointer}
+header{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+header .title{font-weight:700}
+.search{display:flex}
+.search input{padding:6px;border:1px solid #ccc}
+.search button{background:var(--blue);color:#fff;border:0;padding:6px 10px}
+nav{background:var(--blue)}
+nav ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap}
 nav li{position:relative}
-nav a{color:#fff;padding:10px 15px;display:block;text-decoration:none}
+nav>ul>li>a{display:block;padding:12px 14px;color:#fff}
 nav li:hover>ul{display:block}
-nav ul ul{display:none;position:absolute;background:#004aad;top:100%;left:0;min-width:180px}
-nav ul ul li{width:100%}
-.container{display:flex}
-.left{width:220px;background:#eee;padding:10px}
-.main{flex:1;padding:20px}
-.slider img{width:100%;height:300px;object-fit:cover}
-.card{background:#f2f2f2;padding:15px;margin:10px 0;border-radius:5px}
-footer{background:#003380;color:#fff;text-align:center;padding:10px}
+nav ul ul{display:none;position:absolute;background:#fff;min-width:180px;z-index:9}
+nav ul ul a{color:#222;padding:10px;display:block}
+.layout{display:flex}
+.sidebar{width:220px;background:#f0f3ff;padding:10px}
+.main{flex:1}
+.slider{position:relative;height:300px;overflow:hidden}
+.slide{position:absolute;inset:0;opacity:0;transition:.8s;background-size:cover;background-position:center}
+.slide.active{opacity:1}
+.overlay{position:absolute;bottom:20px;left:20px;background:rgba(0,0,0,.6);color:#fff;padding:10px}
+section{padding:40px 20px;max-width:1100px;margin:auto}
+.cards{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
+.card{background:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);width:260px;text-align:center}
+footer{background:#111;color:#fff;padding:20px;text-align:center}
+.links{background:#ffd400;padding:10px;text-align:center}
+.dark{--bg:#111;--txt:#eee}
 </style>
 </head>
-
 <body>
+
+<a id="skip" href="#content" style="position:absolute;left:-9999px">Skip</a>
+
+<p><b class="ph">Phone</b>: 9559222140</p>
+<p><b class="em">E-mail</b>: watechengineering@gmail.com</p>
+<p><b class="ad">Address</b>: 200/2, Yogendra Vihar, ...</p>
+
 <div class="topbar">
-<div>
-<a href="#">Skip to Main</a> |
-<a href="#">Screen Reader</a> |
-<a href="#">Sitemap</a>
-</div>
-<div>
+<button onclick="setLang('en')">English</button>
+<button onclick="setLang('hi')">हिंदी</button>
 <button onclick="font(1)">A+</button>
 <button onclick="font(-1)">A-</button>
-<button onclick="theme()">Theme</button>
-<button onclick="lang('hi')">हिंदी</button>
-<button onclick="lang('en')">English</button>
-</div>
+<button onclick="toggleTheme()">Theme</button>
+<a href="#content">Skip to Content</a>
 </div>
 
 <header>
-<img src="logo.png">
-<h2 id="title">Watech Engineering (UPJN) LLP</h2>
+<img src="logo.png" height="50"/>
+<div class="title">Watech Engineering (UPJN) LLP</div>
+<div class="search">
+<input id="q" placeholder="Search..."/>
+<button onclick="doSearch()">Go</button>
+</div>
 </header>
 
 <nav>
 <ul>
-<li><a href="#" data-key="home">Home</a></li>
-<li><a href="#" data-key="about">About</a>
-<ul>
-<li><a href="#">Vision</a></li>
-<li><a href="#">Mission</a></li>
-</ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">About Dept</a>
+  <ul>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#vision">Vision</a></li>
+  </ul>
 </li>
-<li><a href="#">Services</a></li>
-<li><a href="#">Tenders</a></li>
-<li><a href="#" data-key="contact">Contact</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#contact">Contact</a></li>
 </ul>
 </nav>
 
-<div class="container">
-<div class="left">
-<b>Quick Links</b>
-<ul>
-<li>Projects</li>
-<li>Downloads</li>
-<li>Notices</li>
-</ul>
-</div>
+<div class="layout">
+<aside class="sidebar">
+<b>Quick Links</b><br/>Water | STP | DPR | Tenders
+</aside>
 
-<div class="main">
+<main class="main">
 <div class="slider">
-<img src="slide1.jpg">
+<div class="slide active" style="background-image:url('slide1.jpg')"><div class="overlay">STP Project</div></div>
+<div class="slide" style="background-image:url('slide2.jpg')"><div class="overlay">WTP Project</div></div>
 </div>
 
-<div class="card">
-<h3 data-key="about">About Us</h3>
-<p id="about"></p>
+<div id="content">
+<section id="services">
+<h2>Our Services</h2>
+<div class="cards">
+<div class="card"><h3>Water Supply</h3><p>Urban & Rural Water Supply, Planning and Design & Execution</p></div>
+<div class="card"><h3>Wastewater</h3><p>Sewerage Network & STP Design & Execution</p></div>
+<div class="card"><h3>Storm Water</h3><p>Drainage & Flood Control Systems Design & Execution</p></div>
+<div class="card"><h3>Structural Design</h3><p>Residential & Commercial Structural Design & Execution</p></div>
+</div>
+</section>
+
+<section id="about"><h2>About Us</h2><p>Watech Engineering (UPJN) LLP was Co-founded by India's two leading women business tycoons Mrs. Lakshmi & Mrs. Rashmi belonging from Kanpur city of Uttar Pradesh in 2025 with cordially support of Mr. Om Prakash, Miss. Pragati, Mrs. Shailja. ...</p></section>
+
+<section id="mission"><h2>Our Mission</h2><p>Our mission is to design and deliver reliable, innovative and sustainable water infrastructure solutions...</p></section>
+
+<section id="vision"><h2>Our Vision</h2><p>Our vision is to become one of India’s most trusted and leading water infrastructure...</p></section>
+
+<section id="contact"><h2>Contact</h2>
+<p>Phone: 9559222140<br>Email: watechengineering@gmail.com<br>Address: Kanpur</p>
+</section>
+</div>
+</main>
 </div>
 
-<div class="card">
-<h3 data-key="vision">Vision</h3>
-<p id="vision"></p>
-</div>
+<div class="links">Important Links | Sitemap | Help</div>
+<footer>© 2026 Watech Engineering (UPJN) LLP</footer>
 
-<div class="card">
-<h3 data-key="mission">Mission</h3>
-<p id="mission"></p>
-</div>
-
-<div class="card">
-<h3 data-key="contact">Contact</h3>
-<p id="contact"></p>
-</div>
-</div>
-</div>
-
-<footer>
-© 2026 Watech Engineering (UPJN) LLP
-</footer>
-
-<script>
-let size=16;
-function font(x){size+=x;document.body.style.fontSize=size+"px";}
-function theme(){document.body.classList.toggle("dark");}
-
-const LANG={
+ <script>
+const LANG = {
 en:{
-title:"Watech Engineering (UPJN) LLP",
-about:"Watech Engineering is a professional consultancy in water & infrastructure.",
-vision:"To be a trusted engineering partner.",
-mission:"Deliver quality and sustainable solutions.",
-contact:"Email: watechengineering@gmail.com | Phone: 9559222140",
-home:"Home"
+menu:{services:"Our Services",about:"About Us",mission:"Our Mission",vision:"Our Vision",contact:"Contact"},
+about:`Watech Engineering (UPJN) LLP was Co-founded by India's two leading women business tycoons Mrs. Lakshmi & Mrs. Rashmi belonging from Kanpur city of Uttar Pradesh in 2025 with cordially support of Mr. Om Prakash, Miss. Pragati, Mrs. Shailja. We are An ISO 9001:2015 & 14001:2015 Certified Company Specialist in All types of Water Supply Works ( like Intake Well, WTP, CWR, OHT, PH etc.), All types of Sewerage Works (like Trunk line Laying, Construction of STP, IPS, MPS etc.), Construction of All types of Storm Water Drainage System, RO Water Management Sollution Works & All types of Govt. Order Supplier. Watech Engineering (UPJN) LLPis a trusted and performance-driven consultancy and construction company delivering advanced, sustainable and cost-effective water management solutions across India. We providing complete end-to-end services from concept to commissioning. Our expertise covers survey, planning, detailed engineering design, DPR preparation, tender support, project management and full-scale on-site execution. Backed by a team of experienced engineers and technical professionals, we are committed to delivering every project with the highest standards of quality, safety and timely completion. Watech Engineering (UPJN) LLP actively participating in tenders across the India and executing infrastructure projects with precision and accountability. Our core mission is to create smart, reliable and future-ready water systems that support sustainable development with a strong focus on innovation, transparency and 100% Client Satisfaction.`,
+mission:`Our mission is to design and deliver reliable, innovative and sustainable water infrastructure solutions that enhance quality of life and protect the environment. We are committed to providing end-to-end consultancy and construction services in Water Supply, Wastewater, Storm Water and RO Water Management with the highest standards of quality, safety and efficiency. Through technical excellence, transparency and timely execution, we aim to create long-term value for our clients, partners and society.`,
+vision:`Our vision is to become one of India’s most trusted and leading water infrastructure and management companies, recognized for engineering excellence, integrity and sustainable practices. We strive to set new benchmarks in water and wastewater solutions by adopting modern technologies, smart systems and eco-friendly designs. Through continuous innovation and growth, we aim to contribute to a water-secure and sustainable future for India.`,
+contact:{phone:"Phone",email:"E-mail",address:"Address"}
 },
 hi:{
-title:"वाटेक इंजीनियरिंग (UPJN) LLP",
-about:"वाटेक इंजीनियरिंग जल एवं इंफ्रास्ट्रक्चर की प्रोफेशनल कंसल्टेंसी है।",
-vision:"एक भरोसेमंद इंजीनियरिंग पार्टनर बनना।",
-mission:"गुणवत्ता एवं टिकाऊ समाधान देना।",
-contact:"ईमेल: watechengineering@gmail.com | फोन: 9559222140",
-home:"मुख्य पृष्ठ"
+menu:{services:"हमारी सेवाएँ",about:"हमारे बारे में",mission:"हमारा मिशन",vision:"हमारा विज़न",contact:"संपर्क"},
+about:`Watech Engineering (UPJN) LLP की सह-स्थापना भारत की दो अग्रणी महिला उद्यमियों श्रीमती लक्ष्मी एवं श्रीमती रश्मि द्वारा वर्ष 2025 में कानपुर (उत्तर प्रदेश) में श्री ओम प्रकाश, मिस प्रगति तथा श्रीमती शैलजा के सहयोग से की गई। हम ISO 9001:2015 एवं 14001:2015 प्रमाणित कंपनी हैं और सभी प्रकार के जलापूर्ति कार्य (जैसे Intake Well, WTP, CWR, OHT, PH आदि), सभी प्रकार के सीवरेज कार्य (जैसे Trunk Line Laying, STP, IPS, MPS आदि), सभी प्रकार के स्टॉर्म वाटर ड्रेनेज सिस्टम, RO जल प्रबंधन समाधान एवं सभी प्रकार की सरकारी आपूर्ति कार्यों में विशेषज्ञ हैं। Watech Engineering (UPJN) LLP एक विश्वसनीय एवं प्रदर्शन-आधारित कंसल्टेंसी एवं निर्माण कंपनी है जो पूरे भारत में उन्नत, सतत एवं किफायती जल प्रबंधन समाधान प्रदान करती है। हम सर्वेक्षण, योजना, विस्तृत इंजीनियरिंग डिजाइन, DPR, टेंडर सपोर्ट, परियोजना प्रबंधन तथा ऑन-साइट निष्पादन तक एंड-टू-एंड सेवाएँ प्रदान करते हैं। अनुभवी इंजीनियरों एवं तकनीकी टीम के साथ हम गुणवत्ता, सुरक्षा एवं समयबद्धता के उच्चतम मानकों के लिए प्रतिबद्ध हैं। हम पूरे भारत में टेंडरों में सक्रिय रूप से भाग लेते हैं और सटीकता व जवाबदेही के साथ परियोजनाएँ निष्पादित करते हैं। हमारा मूल उद्देश्य स्मार्ट, विश्वसनीय एवं भविष्य-तैयार जल प्रणालियाँ विकसित करना है जो नवाचार, पारदर्शिता एवं 100% ग्राहक संतुष्टि के साथ सतत विकास को समर्थन दें।`,
+mission:`हमारा मिशन विश्वसनीय, नवोन्मेषी एवं सतत जल अवसंरचना समाधान प्रदान करना है जिससे जीवन की गुणवत्ता में सुधार हो और पर्यावरण की रक्षा हो। हम जलापूर्ति, अपशिष्ट जल, स्टॉर्म वाटर एवं RO जल प्रबंधन में उच्च गुणवत्ता, सुरक्षा एवं दक्षता के साथ एंड-टू-एंड सेवाएँ प्रदान करने के लिए प्रतिबद्ध हैं। तकनीकी उत्कृष्टता, पारदर्शिता एवं समयबद्ध निष्पादन के माध्यम से हम अपने ग्राहकों, साझेदारों एवं समाज के लिए दीर्घकालिक मूल्य सृजित करते हैं।`,
+vision:`हमारा विज़न भारत की सबसे विश्वसनीय एवं अग्रणी जल अवसंरचना एवं प्रबंधन कंपनियों में शामिल होना है, जो इंजीनियरिंग उत्कृष्टता, ईमानदारी एवं सतत प्रथाओं के लिए पहचानी जाए। हम आधुनिक तकनीक, स्मार्ट सिस्टम एवं पर्यावरण-अनुकूल डिज़ाइनों को अपनाकर जल एवं अपशिष्ट जल समाधानों में नए मानक स्थापित करने का प्रयास करते हैं। सतत नवाचार एवं विकास के माध्यम से हम भारत के लिए जल-सुरक्षित एवं सतत भविष्य में योगदान देना चाहते हैं।`,
+contact:{phone:"फ़ोन",email:"ई-मेल",address:"पता"}
 }
 };
-
-function lang(l){
-document.getElementById("title").innerText=LANG[l].title;
-about.innerText=LANG[l].about;
-vision.innerText=LANG[l].vision;
-mission.innerText=LANG[l].mission;
-contact.innerText=LANG[l].contact;
-document.querySelectorAll("[data-key]").forEach(e=>{
-e.innerText=LANG[l][e.dataset.key];
-});
+let CUR="en";
+function setLang(l){
+CUR=l;
+document.querySelector('#about p').innerText=LANG[l].about;
+document.querySelector('#mission p').innerText=LANG[l].mission;
+document.querySelector('#vision p').innerText=LANG[l].vision;
+document.querySelector('#contact .ph').innerText=LANG[l].contact.phone;
+document.querySelector('#contact .em').innerText=LANG[l].contact.email;
+document.querySelector('#contact .ad').innerText=LANG[l].contact.address;
 }
-lang("en");
 </script>
+
+<script>
+let i=0;setInterval(()=>{const s=document.querySelectorAll('.slide');s[i].classList.remove('active');i=(i+1)%s.length;s[i].classList.add('active')},3000);
+let fs=16;function font(d){fs+=d;document.body.style.fontSize=fs+'px'}
+function toggleTheme(){document.body.classList.toggle('dark')}
+function doSearch(){const q=document.getElementById('q').value.toLowerCase();document.querySelectorAll('section').forEach(s=>s.style.display=s.innerText.toLowerCase().includes(q)?'block':'none')}
+function setLang(l){alert('Demo toggle: content mapping can be added.')}
+</script>
+
 </body>
 </html>

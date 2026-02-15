@@ -38,8 +38,14 @@ nav a{color:#fff;margin:0 15px;text-decoration:none;font-weight:bold}
 
 /* SLIDER */
 .hero{width:100%;height:500px;overflow:hidden;position:relative}
-.slides{display:flex;width:400%;height:100%;transition:transform 1s ease}
-.slide{width:100%;height:100%;background-size:cover;background-position:center}
+.slides{display:flex;width:500%;height:100%}
+.slide{
+  width:100%;
+  height:100%;
+  background-size:80%;
+  background-repeat:no-repeat;
+  background-position:center;
+}
 @media(max-width:768px){.hero{height:300px}}
 
 section{padding:60px 20px;max-width:1100px;margin:auto}
@@ -76,6 +82,7 @@ footer{background:#222;color:#fff;padding:20px;text-align:center}
     <div class="slide" style="background-image:url('banner2.png')"></div>
     <div class="slide" style="background-image:url('banner3.png')"></div>
     <div class="slide" style="background-image:url('banner4.png')"></div>
+    <div class="slide" style="background-image:url('banner1.png')"></div>
   </div>
 </div>
 
@@ -89,7 +96,6 @@ footer{background:#222;color:#fff;padding:20px;text-align:center}
 </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
 <h2>About Us:</h2>
 <p data-lang="en">Watech Engineering (UPJN) LLP was Co-founded by India's two leading women business tycoons Mrs. Lakshmi & Mrs. Rashmi belonging from Kanpur city of Uttar Pradesh in 2025 with cordially support of Mr. Om Prakash, Miss. Pragati, Mrs. Shailja. We are An ISO 9001:2015 & 14001:2015 Certified Company Specialist in All types of Water Supply Works ( like Intake Well, WTP, CWR, OHT, PH etc.), All types of Sewerage Works (like Trunk line Laying, Construction of STP, IPS, MPS etc.), Construction of All types of Storm Water Drainage System, RO Water Management Sollution Works & All types of Govt. Order Supplier. Watech Engineering (UPJN) LLPis a trusted and performance-driven consultancy and construction company delivering advanced, sustainable and cost-effective water management solutions across India. We providing complete end-to-end services from concept to commissioning. Our expertise covers survey, planning, detailed engineering design, DPR preparation, tender support, project management and full-scale on-site execution. Backed by a team of experienced engineers and technical professionals, we are committed to delivering every project with the highest standards of quality, safety and timely completion. Watech Engineering (UPJN) LLP actively participating in tenders across the India and executing infrastructure projects with precision and accountability. Our core mission is to create smart, reliable and future-ready water systems that support sustainable development with a strong focus on innovation, transparency and 100% Client Satisfaction.</p>
@@ -123,11 +129,30 @@ footer{background:#222;color:#fff;padding:20px;text-align:center}
 <a class="whatsapp" href="https://wa.me/919559222140" target="_blank">💬</a>
 
 <script>
-let i=0;
-setInterval(()=>{
-  i=(i+1)%4;
-  document.querySelector(".slides").style.transform="translateX(-"+(i*100)+"%)";
-},5000);
+let current=0;
+const slides=document.querySelector(".slides");
+const total=4;
+const stay=5000;
+const speed=1000;
+
+function move(){
+  slides.style.transition=`transform ${speed}ms ease-in-out`;
+  current++;
+  slides.style.transform=`translateX(-${current*100}%)`;
+
+  if(current===total){
+    setTimeout(()=>{
+      slides.style.transition="none";
+      current=0;
+      slides.style.transform="translateX(0%)";
+    },speed);
+  }
+}
+
+setTimeout(function auto(){
+  move();
+  setTimeout(auto,stay+speed);
+},stay);
 
 function toggleLang(lang){
 document.querySelectorAll("[data-lang]").forEach(el=>{

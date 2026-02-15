@@ -42,7 +42,7 @@ nav a{color:#fff;margin:0 15px;text-decoration:none;font-weight:bold}
 .slide{
   width:100%;
   height:100%;
-  background-size:90%;
+  background-size:95%;
   background-repeat:no-repeat;
   background-position:center;
 }
@@ -129,35 +129,48 @@ footer{background:#222;color:#fff;padding:20px;text-align:center}
 <a class="whatsapp" href="https://wa.me/919559222140" target="_blank">💬</a>
 
 <script>
-let current=0;
-const slides=document.querySelector(".slides");
-const total=4;
-const stay=5000;
-const speed=1000;
+let current = 0;
+const slides = document.querySelector(".slides");
+const total = 4;
+const stay = 5000;   // हर स्लाइड 5 सेकंड रुके
+const speed = 1000; // 1 सेकंड में स्लाइड करे
 
-function move(){
-  slides.style.transition=`transform ${speed}ms ease-in-out`;
+let isAnimating = false;
+
+function move() {
+  if (isAnimating) return;   // overlapping रोकता है
+  isAnimating = true;
+
+  slides.style.transition = `transform ${speed}ms ease-in-out`;
   current++;
-  slides.style.transform=`translateX(-${current*100}%)`;
+  slides.style.transform = `translateX(-${current * 100}%)`;
 
-  if(current===total){
-    setTimeout(()=>{
-      slides.style.transition="none";
-      current=0;
-      slides.style.transform="translateX(0%)";
-    },speed);
+  if (current === total) {
+    setTimeout(() => {
+      slides.style.transition = "none";
+      current = 0;
+      slides.style.transform = `translateX(0%)`;
+    }, speed);
   }
+
+  setTimeout(() => {
+    isAnimating = false;
+  }, speed + 50);
 }
 
-setInterval(move, stay + speed);
+setTimeout(function auto() {
+  move();
+  setTimeout(auto, stay + speed);
+}, stay);
 
 function toggleLang(lang){
-document.querySelectorAll("[data-lang]").forEach(el=>{
-el.style.display=(el.getAttribute("data-lang")==lang)?"block":"none";
-});
+  document.querySelectorAll("[data-lang]").forEach(el=>{
+    el.style.display=(el.getAttribute("data-lang")==lang)?"block":"none";
+  });
 }
 toggleLang("en");
 </script>
 
 </body>
 </html>
+

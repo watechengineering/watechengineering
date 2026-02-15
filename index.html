@@ -42,7 +42,7 @@ nav a{color:#fff;margin:0 15px;text-decoration:none;font-weight:bold}
 .slide{
   width:100%;
   height:100%;
-  background-size:80%;
+  background-size:90%;
   background-repeat:no-repeat;
   background-position:center;
 }
@@ -149,10 +149,7 @@ function move(){
   }
 }
 
-setTimeout(function auto(){
-  move();
-  setTimeout(auto,stay+speed);
-},stay);
+setInterval(move, stay + speed);
 
 function toggleLang(lang){
 document.querySelectorAll("[data-lang]").forEach(el=>{

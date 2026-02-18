@@ -119,7 +119,18 @@ nav{background:#003b8f;padding:8px;text-align:center}
 nav a{color:#fff;margin:0 15px;text-decoration:none;font-weight:bold}
 
 /* SLIDER */
-.hero{width:100%;height:100%;overflow:hidden;position:relative}
+.hero{
+  width:100%;
+  height:500px;   /* यही main fix है */
+  overflow:hidden;
+  position:relative;
+}
+.slide{
+  min-width:100%;
+  height:100%;
+  background-size:cover;  /* बेहतर */
+  background-position:center;
+}
 .slides{display:flex;width:100%;height:100%}
 .slide{
   min-width:100%;
@@ -296,27 +307,12 @@ position: relative;
 <script>
 let current = 0;
 const slides = document.querySelector(".slides");
-const total = document.querySelectorAll(".slide").length - 1;
+const total = document.querySelectorAll(".slide").length;
 const stay = 5000; // हर स्लाइड 5 सेकंड रुके
 const speed = 1000; // 1 सेकंड में स्लाइड करे
 let isAnimating = false;
 let paused = false;
 let timer;
-function move() {
-  if (isAnimating || paused) return;
-  isAnimating = true;
-  slides.style.transition = `transform ${speed}ms ease-in-out`;
-  current++;
-  slides.style.transform = `translateX(-${current * 100}%)`;
-  if (current === total) {
-    setTimeout(() => {
-      slides.style.transition = "none";
-      current = 0;
-      slides.style.transform = `translateX(0%)`;
-    }, speed);
-  }
-  setTimeout(() => isAnimating = false, speed + 50);
-}
 function startAuto(){
   timer = setInterval(() => {
     if(!paused) move();
@@ -324,12 +320,7 @@ function startAuto(){
 }
 startAuto();
 function nextSlide(){ move(); }
-function prevSlide(){
-  if (isAnimating) return;
-  current = (current - 1 + total) % total;
-  slides.style.transition = `transform ${speed}ms ease-in-out`;
-  slides.style.transform = `translateX(-${current * 100}%)`;
-}
+
 function togglePause(){
   paused = !paused;
   document.querySelector(".pause").innerText = paused ? "▶" : "⏸";
@@ -388,3 +379,4 @@ updateUI();
 </script>
 </body>
 </html>
+

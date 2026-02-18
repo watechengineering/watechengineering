@@ -102,9 +102,9 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_IN">
 <meta property="og:site_name" content="Watech Engineering">
-<meta property="og:image" content="https://watechengineering.pages.dev/banner1.png">
+<meta property="og:image" content="https://watechengineering.pages.dev/banner1_1.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://watechengineering.pages.dev/banner1.png">
+<meta name="twitter:image" content="https://watechengineering.pages.dev/banner1_1.png">
 
 <link rel="icon" href="Logo%20New.png">
 
@@ -119,11 +119,11 @@ nav{background:#003b8f;padding:8px;text-align:center}
 nav a{color:#fff;margin:0 15px;text-decoration:none;font-weight:bold}
 
 /* SLIDER */
-.hero{width:100%;height:500px;overflow:hidden;position:relative}
+.hero{width:100%;height:100%;overflow:hidden;position:relative}
 .slides{display:flex;width:100%;height:100%}
 .slide{
   min-width:100%;
-  height:50%;
+  height:100%;
   background-size:100%;
   background-repeat:no-repeat;
   background-position:center;
@@ -154,6 +154,68 @@ position: relative;
     text-align: justify;
     text-justify: inter-word;
 }
+.nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,0.25);  /* transparent */
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.6);
+  font-size:32px;
+  padding:10px 14px;
+  cursor:pointer;
+  border-radius:50%;
+  z-index:10;
+  backdrop-filter: blur(3px);
+  transition:0.3s;
+}
+.nav:hover{
+  background:rgba(0,0,0,0.55);
+}
+.prev{left:15px}
+.next{right:15px}
+.pause{
+  top:88%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:18px;
+  border-radius:20px;
+}
+.caption{
+  position:absolute;
+  bottom:40px;
+  left:50%;
+  transform:translateX(-50%);
+  color:#fff;
+  font-size:28px;
+  font-weight:bold;
+  text-shadow:0 2px 6px rgba(0,0,0,0.7);
+  animation: fadeIn 1s ease;
+  pointer-events:none;
+}
+@keyframes fadeIn{
+  from{opacity:0;transform:translate(-50%,20px)}
+  to{opacity:1;transform:translate(-50%,0)}
+}
+
+.dots{
+  position:absolute;
+  bottom:10px;
+  width:100%;
+  text-align:center;
+}
+.dots span{
+  display:inline-block;
+  width:12px;
+  height:12px;
+  margin:0 5px;
+  background:#bbb;
+  border-radius:50%;
+  cursor:pointer;
+}
+.dots .active{
+  background:#0a5cff;
+}
 </style>
 </head>
 
@@ -162,12 +224,12 @@ position: relative;
   <span onclick="toggleLang('en')">EN</span>
   <span onclick="toggleLang('hi')">हिंदी</span>
 </div>
-
 <header>
   <img src="logo1.png" height="100">
   <b>Watech Engineering (UPJN) LLP</b>
 </header>
-
+<div class="caption" id="caption"></div>
+<div class="dots" id="dots"></div>
 <nav>
   <a href="#services">Services</a>
   <a href="#about">About</a>
@@ -178,12 +240,15 @@ position: relative;
 
 <div class="hero" id="slider">
   <div class="slides">
-    <div class="slide" style="background-image:url('banner1.png')"></div>
-    <div class="slide" style="background-image:url('banner2.png')"></div>
-    <div class="slide" style="background-image:url('banner3.png')"></div>
-    <div class="slide" style="background-image:url('banner4.png')"></div>
-    <div class="slide" style="background-image:url('banner1.png')"></div>
+    <div class="slide" style="background-image:url('banner1_1.png')"></div>
+    <div class="slide" style="background-image:url('banner1_2.png')"></div>
+    <div class="slide" style="background-image:url('banner1_3.png')"></div>
+    <div class="slide" style="background-image:url('banner1_4.png')"></div>
+    <div class="slide" style="background-image:url('banner.jpeg')"></div>
   </div>
+  <button class="nav prev" onclick="prevSlide()">❮</button>
+<button class="nav next" onclick="nextSlide()">❯</button>
+<button class="nav pause" onclick="togglePause()">⏸</button>
 </div>
 
 <section id="services">
@@ -228,24 +293,21 @@ position: relative;
 
 <footer>&copy; 2026 Watech Engineering (UPJN) LLP. All Rights Reserved.</footer>
 <a class="whatsapp" href="https://wa.me/919559222140" target="_blank">💬</a>
-
 <script>
 let current = 0;
 const slides = document.querySelector(".slides");
-const total = 4;
-const stay = 5000;   // हर स्लाइड 5 सेकंड रुके
+const total = document.querySelectorAll(".slide").length - 1;
+const stay = 5000; // हर स्लाइड 5 सेकंड रुके
 const speed = 1000; // 1 सेकंड में स्लाइड करे
-
 let isAnimating = false;
-
+let paused = false;
+let timer;
 function move() {
-  if (isAnimating) return;   // overlapping रोकता है
+  if (isAnimating || paused) return;
   isAnimating = true;
-
   slides.style.transition = `transform ${speed}ms ease-in-out`;
   current++;
   slides.style.transform = `translateX(-${current * 100}%)`;
-
   if (current === total) {
     setTimeout(() => {
       slides.style.transition = "none";
@@ -253,41 +315,76 @@ function move() {
       slides.style.transform = `translateX(0%)`;
     }, speed);
   }
-
-  setTimeout(() => {
-    isAnimating = false;
-  }, speed + 50);
+  setTimeout(() => isAnimating = false, speed + 50);
 }
-
-setTimeout(function auto() {
-  move();
-  setTimeout(auto, stay + speed);
-}, stay);
-
+function startAuto(){
+  timer = setInterval(() => {
+    if(!paused) move();
+  }, stay + speed);
+}
+startAuto();
+function nextSlide(){ move(); }
+function prevSlide(){
+  if (isAnimating) return;
+  current = (current - 1 + total) % total;
+  slides.style.transition = `transform ${speed}ms ease-in-out`;
+  slides.style.transform = `translateX(-${current * 100}%)`;
+}
+function togglePause(){
+  paused = !paused;
+  document.querySelector(".pause").innerText = paused ? "▶" : "⏸";
+}
+/* Language toggle */
 function toggleLang(lang){
   document.querySelectorAll("[data-lang]").forEach(el=>{
-    el.style.display=(el.getAttribute("data-lang")==lang)?"block":"none";
+    el.style.display = (el.getAttribute("data-lang") === lang) ? "block" : "none";
   });
 }
 toggleLang("en");
-</script>
+document.getElementById("slider").addEventListener("mouseenter",()=>paused=true);
+document.getElementById("slider").addEventListener("mouseleave",()=>paused=false);
+const captions = [
+  "Water Supply Solutions",
+  "Sewerage & STP Systems",
+  "Industrial RO Plants",
+  "Storm Water Drainage",
+  "Structural Design Works"
+];
 
+const dotsBox = document.getElementById("dots");
+const captionBox = document.getElementById("caption");
+
+function renderDots(){
+  for(let i=0;i<=total;i++){
+    let s=document.createElement("span");
+    s.onclick=()=>goTo(i);
+    dotsBox.appendChild(s);
+  }
+}
+function updateUI(){
+  captionBox.innerText = captions[current];
+  document.querySelectorAll(".dots span").forEach((d,i)=>{
+    d.classList.toggle("active", i===current);
+  });
+}
+function goTo(i){
+  if(isAnimating) return;
+  current=i;
+  slides.style.transition=`transform ${speed}ms ease-in-out`;
+  slides.style.transform=`translateX(-${current*100}%)`;
+  updateUI();
+}
+/* Swipe */
+let startX=0;
+slider.addEventListener("touchstart",e=>startX=e.touches[0].clientX);
+slider.addEventListener("touchend",e=>{
+  let endX=e.changedTouches[0].clientX;
+  if(startX-endX>50) nextSlide();
+  if(endX-startX>50) prevSlide();
+});
+
+renderDots();
+updateUI();
+</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

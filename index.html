@@ -135,7 +135,7 @@ nav a{color:#fff;margin:0 15px;text-decoration:none;font-weight:bold}
 .slide{
   min-width:100%;
   height:100%;
-  background-size:100%;
+  background-size:cover;
   background-repeat:no-repeat;
   background-position:center;
 }
@@ -239,8 +239,6 @@ position: relative;
   <img src="logo1.png" height="100">
   <b>Watech Engineering (UPJN) LLP</b>
 </header>
-<div class="caption" id="caption"></div>
-<div class="dots" id="dots"></div>
 <nav>
   <a href="#services">Services</a>
   <a href="#about">About</a>
@@ -250,6 +248,8 @@ position: relative;
 </nav>
 
 <div class="hero" id="slider">
+<div class="caption" id="caption"></div>
+<div class="dots" id="dots"></div>
   <div class="slides">
     <div class="slide" style="background-image:url('banner1_1.png')"></div>
     <div class="slide" style="background-image:url('banner1_2.png')"></div>
@@ -304,36 +304,67 @@ position: relative;
 
 <footer>&copy; 2026 Watech Engineering (UPJN) LLP. All Rights Reserved.</footer>
 <a class="whatsapp" href="https://wa.me/919559222140" target="_blank">💬</a>
-<script>
+
+  <script>
 let current = 0;
 const slides = document.querySelector(".slides");
 const total = document.querySelectorAll(".slide").length;
-const stay = 5000; // हर स्लाइड 5 सेकंड रुके
-const speed = 1000; // 1 सेकंड में स्लाइड करे
+const stay = 5000;
+const speed = 1000;
 let isAnimating = false;
 let paused = false;
 let timer;
+
+function move(){
+  if(isAnimating || paused) return;
+  isAnimating = true;
+
+  current++;
+  slides.style.transition = `transform ${speed}ms ease-in-out`;
+  slides.style.transform = `translateX(-${current * 100}%)`;
+
+  if(current === total){
+    setTimeout(()=>{
+      slides.style.transition = "none";
+      current = 0;
+      slides.style.transform = `translateX(0%)`;
+      updateUI();
+    }, speed);
+  } else {
+    updateUI();
+  }
+
+  setTimeout(()=> isAnimating=false, speed+50);
+}
+
+function prevSlide(){
+  if(isAnimating) return;
+  isAnimating = true;
+
+  current = (current - 1 + total) % total;
+  slides.style.transition = `transform ${speed}ms ease-in-out`;
+  slides.style.transform = `translateX(-${current * 100}%)`;
+  updateUI();
+
+  setTimeout(()=> isAnimating=false, speed+50);
+}
+
+function nextSlide(){
+  move();
+}
+
 function startAuto(){
-  timer = setInterval(() => {
+  timer = setInterval(()=>{
     if(!paused) move();
   }, stay + speed);
 }
 startAuto();
-function nextSlide(){ move(); }
 
 function togglePause(){
   paused = !paused;
   document.querySelector(".pause").innerText = paused ? "▶" : "⏸";
 }
-/* Language toggle */
-function toggleLang(lang){
-  document.querySelectorAll("[data-lang]").forEach(el=>{
-    el.style.display = (el.getAttribute("data-lang") === lang) ? "block" : "none";
-  });
-}
-toggleLang("en");
-document.getElementById("slider").addEventListener("mouseenter",()=>paused=true);
-document.getElementById("slider").addEventListener("mouseleave",()=>paused=false);
+
 const captions = [
   "Water Supply Solutions",
   "Sewerage & STP Systems",
@@ -346,18 +377,21 @@ const dotsBox = document.getElementById("dots");
 const captionBox = document.getElementById("caption");
 
 function renderDots(){
-  for(let i=0;i<=total;i++){
+  dotsBox.innerHTML="";
+  for(let i=0;i<total;i++){
     let s=document.createElement("span");
     s.onclick=()=>goTo(i);
     dotsBox.appendChild(s);
   }
 }
+
 function updateUI(){
   captionBox.innerText = captions[current];
   document.querySelectorAll(".dots span").forEach((d,i)=>{
     d.classList.toggle("active", i===current);
   });
 }
+
 function goTo(i){
   if(isAnimating) return;
   current=i;
@@ -365,8 +399,10 @@ function goTo(i){
   slides.style.transform=`translateX(-${current*100}%)`;
   updateUI();
 }
+
 /* Swipe */
 let startX=0;
+const slider=document.getElementById("slider");
 slider.addEventListener("touchstart",e=>startX=e.touches[0].clientX);
 slider.addEventListener("touchend",e=>{
   let endX=e.changedTouches[0].clientX;
@@ -376,7 +412,12 @@ slider.addEventListener("touchend",e=>{
 
 renderDots();
 updateUI();
+
+slider.addEventListener("mouseenter",()=>paused=true);
+slider.addEventListener("mouseleave",()=>paused=false);
 </script>
+
 </body>
 </html>
+
 

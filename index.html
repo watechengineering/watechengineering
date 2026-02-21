@@ -111,6 +111,59 @@
 <link rel="icon" href="Logo%20New.png">
 
 <style>
+  #topBar{
+  display:flex;
+  justify-content:flex-end;
+  padding:12px 25px;
+  background:linear-gradient(135deg,#f5f7fa,#e4e8f0);
+}
+
+.lang-container{
+  position:relative;
+}
+
+.lang-toggle{
+  position:relative;
+  display:flex;
+  background:#fff;
+  border-radius:40px;
+  padding:5px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.08);
+  overflow:hidden;
+}
+
+.lang-option{
+  position:relative;
+  z-index:2;
+  border:none;
+  background:none;
+  padding:8px 22px;
+  cursor:pointer;
+  font-weight:600;
+  font-size:14px;
+  border-radius:30px;
+  transition:0.3s ease;
+}
+
+.lang-option:hover{
+  transform:scale(1.05);
+}
+
+.lang-option.active{
+  color:#fff;
+}
+
+.lang-slider{
+  position:absolute;
+  height:100%;
+  width:50%;
+  background:linear-gradient(135deg,#0a5cff,#003b8f);
+  border-radius:40px;
+  top:0;
+  left:0;
+  transition:all 0.4s cubic-bezier(.68,-0.55,.27,1.55);
+  box-shadow:0 5px 15px rgba(10,92,255,0.4);
+}
 body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f7fb;color:#333}
 #topBar{background:#e6e6e6;padding:5px 15px;text-align:right;font-size:14px}
 #topBar span{cursor:pointer;margin-left:10px;border:1px solid #999;padding:3px 8px;background:#fff}
@@ -282,10 +335,46 @@ function toggleLang(lang) {
   }
 }
 </script>
+  <script>
+function setLang(lang){
+
+  const elements = document.querySelectorAll("[data-lang]");
+  const buttons = document.querySelectorAll(".lang-option");
+  const slider = document.getElementById("langSlider");
+
+  elements.forEach(el=>{
+    if(el.getAttribute("data-lang")===lang){
+      el.style.display="block";
+      el.style.opacity="0";
+      setTimeout(()=>{
+        el.style.transition="opacity 0.4s ease";
+        el.style.opacity="1";
+      },50);
+    }else{
+      el.style.display="none";
+    }
+  });
+
+  buttons.forEach(btn=>btn.classList.remove("active"));
+
+  if(lang==="en"){
+    buttons[0].classList.add("active");
+    slider.style.left="0%";
+  }else{
+    buttons[1].classList.add("active");
+    slider.style.left="50%";
+  }
+}
+</script>
 <body>
-<div id="topBar">
-  <span id="btn-en" class="lang-btn active" onclick="toggleLang('en')">EN</span>
-  <span id="btn-hi" class="lang-btn" onclick="toggleLang('hi')">हिंदी</span>
+  <div id="topBar">
+  <div class="lang-container">
+    <div class="lang-toggle">
+      <div class="lang-slider" id="langSlider"></div>
+      <button class="lang-option active" onclick="setLang('en')">EN</button>
+      <button class="lang-option" onclick="setLang('hi')">हिंदी</button>
+    </div>
+  </div>
 </div>
   <header>
   <img src="logo.png" height="100">
@@ -439,6 +528,7 @@ slider.addEventListener("touchend", e => {
 </script>
 </body>
 </html>
+
 
 
 

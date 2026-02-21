@@ -51,7 +51,6 @@
   }
 }
 </script>
-  function toggleLang
   
 <script type="application/ld+json">
 {
@@ -258,7 +257,31 @@ footer{background:#222;color:#fff;padding:20px;text-align:center}
 }
 </style>
 </head>
+<script>
+function toggleLang(lang) {
 
+  const elements = document.querySelectorAll("[data-lang]");
+  const btnEn = document.getElementById("btn-en");
+  const btnHi = document.getElementById("btn-hi");
+
+  elements.forEach(el => {
+    if (el.getAttribute("data-lang") === lang) {
+      el.style.display = "block";
+    } else {
+      el.style.display = "none";
+    }
+  });
+
+  // Active button highlight
+  if(lang === "en"){
+    btnEn.classList.add("active");
+    btnHi.classList.remove("active");
+  } else {
+    btnHi.classList.add("active");
+    btnEn.classList.remove("active");
+  }
+}
+</script>
 <body>
 <div id="topBar">
   <span id="btn-en" class="lang-btn active" onclick="toggleLang('en')">EN</span>
@@ -416,6 +439,7 @@ slider.addEventListener("touchend", e => {
 </script>
 </body>
 </html>
+
 
 
 

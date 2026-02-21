@@ -326,24 +326,15 @@ function move(){
   if(isAnimating || paused) return;
   isAnimating = true;
 
-  current++;
+  current = (current + 1) % total;
+
   slides.style.transition = `transform ${speed}ms ease-in-out`;
   slides.style.transform = `translateX(-${current * 100}%)`;
 
-  if(current === total){
-    setTimeout(()=>{
-      slides.style.transition = "none";
-      current = 0;
-      slides.style.transform = `translateX(0%)`;
-      updateUI();
-    }, speed);
-  } else {
-    updateUI();
-  }
+  updateUI();
 
   setTimeout(()=> isAnimating=false, speed+50);
 }
-
 function prevSlide(){
   if(isAnimating) return;
   isAnimating = true;
@@ -427,6 +418,7 @@ slider.addEventListener("mouseleave",()=>paused=false);
 
 </body>
 </html>
+
 
 
 

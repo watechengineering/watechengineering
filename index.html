@@ -111,7 +111,7 @@
 <link rel="icon" href="Logo%20New.png">
 
 <style>
-  #topBar{
+ #topBar{
   display:flex;
   justify-content:flex-end;
   padding:12px 25px;
@@ -130,6 +130,39 @@
   padding:5px;
   box-shadow:0 5px 20px rgba(0,0,0,0.08);
   overflow:hidden;
+}
+
+.lang-option{
+  position:relative;
+  z-index:2;
+  border:none;
+  background:none;
+  padding:8px 22px;
+  cursor:pointer;
+  font-weight:600;
+  font-size:14px;
+  border-radius:30px;
+  transition:0.3s ease;
+}
+
+.lang-option:hover{
+  transform:scale(1.05);
+}
+
+.lang-option.active{
+  color:#fff;
+}
+
+.lang-slider{
+  position:absolute;
+  height:100%;
+  width:50%;
+  background:linear-gradient(135deg,#0a5cff,#003b8f);
+  border-radius:40px;
+  top:0;
+  left:0;
+  transition:all 0.4s cubic-bezier(.68,-0.55,.27,1.55);
+  box-shadow:0 5px 15px rgba(10,92,255,0.4);
 }
 
 .lang-option{
@@ -526,8 +559,40 @@ slider.addEventListener("touchend", e => {
   if (endX - startX > 50) prevSlide();
 });
 </script>
+  <script>
+function setLang(lang){
+
+  const elements = document.querySelectorAll("[data-lang]");
+  const buttons = document.querySelectorAll(".lang-option");
+  const slider = document.getElementById("langSlider");
+
+  elements.forEach(el=>{
+    if(el.getAttribute("data-lang")===lang){
+      el.style.display="block";
+      el.style.opacity="0";
+      setTimeout(()=>{
+        el.style.transition="opacity 0.4s ease";
+        el.style.opacity="1";
+      },50);
+    }else{
+      el.style.display="none";
+    }
+  });
+
+  buttons.forEach(btn=>btn.classList.remove("active"));
+
+  if(lang==="en"){
+    buttons[0].classList.add("active");
+    slider.style.left="0%";
+  }else{
+    buttons[1].classList.add("active");
+    slider.style.left="50%";
+  }
+}
+</script>
 </body>
 </html>
+
 
 
 

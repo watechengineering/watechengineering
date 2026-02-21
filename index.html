@@ -51,19 +51,7 @@
   }
 }
 </script>
-  <script>
-function toggleLang(lang) {
-  const elements = document.querySelectorAll("[data-lang]");
-  
-  elements.forEach(el => {
-    if (el.getAttribute("data-lang") === lang) {
-      el.style.display = "block";
-    } else {
-      el.style.display = "none";
-    }
-  });
-}
-</script>
+  function toggleLang
   
 <script type="application/ld+json">
 {
@@ -132,7 +120,25 @@ header img{vertical-align:middle}
 header b{font-size:22px;margin-left:10px}
 nav{background:#003b8f;padding:8px;text-align:center}
 nav a{color:#fff;margin:0 15px;text-decoration:none;font-weight:bold}
+.lang-btn{
+  cursor:pointer;
+  margin-left:10px;
+  border:1px solid #999;
+  padding:4px 10px;
+  background:#fff;
+  transition:0.3s;
+}
 
+.lang-btn:hover{
+  background:#0a5cff;
+  color:#fff;
+}
+
+.lang-btn.active{
+  background:#0a5cff;
+  color:#fff;
+  border-color:#0a5cff;
+}
 /* SLIDER */
 .hero{
   width:100%;
@@ -255,10 +261,10 @@ footer{background:#222;color:#fff;padding:20px;text-align:center}
 
 <body>
 <div id="topBar">
-  <span onclick="toggleLang('en')">EN</span>
-  <span onclick="toggleLang('hi')">हिंदी</span>
+  <span id="btn-en" class="lang-btn active" onclick="toggleLang('en')">EN</span>
+  <span id="btn-hi" class="lang-btn" onclick="toggleLang('hi')">हिंदी</span>
 </div>
-<header>
+  <header>
   <img src="logo.png" height="100">
   <b>Watech Engineering (UPJN) LLP</b>
 </header>
@@ -410,6 +416,7 @@ slider.addEventListener("touchend", e => {
 </script>
 </body>
 </html>
+
 
 
 

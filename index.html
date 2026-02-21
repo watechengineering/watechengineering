@@ -88,7 +88,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Best Water Supply & Sewerage Contractor & Consultant in Kanpur, U.P. | Watech Engineering LLP</title>
+<title>Best Water Supply, Sewerage Contractor & Consultant in Kanpur, Uttar Pradesh, India | Watech Engineering (UPJN) LLP</title>
 <meta name="description" content="Watech Engineering (UPJN) LLP - Water Supply, Sewerage, Storm Water, RO Water & Structural Design Contractor & Consultants in Kanpur, Uttar Pradesh.">
 <meta name="author" content="Watech Engineering (UPJN) LLP">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -111,138 +111,211 @@
 <link rel="icon" href="Logo%20New.png">
 
 <style>
- #topBar{
-  display:flex;
-  justify-content:flex-end;
-  padding:12px 25px;
-  background:linear-gradient(135deg,#f5f7fa,#e4e8f0);
-}
-
-.lang-container{
-  position:relative;
-}
-
-.lang-toggle{
+  .lang-switch{
   position:relative;
   display:flex;
-  background:#fff;
-  border-radius:40px;
-  padding:5px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.08);
-  overflow:hidden;
+  align-items:center;
+  background:#f2f2f2;
+  border-radius:50px;
+  padding:4px;
+}
+  /* HEADER BASE */
+.corporate-header{
+  position:sticky;
+  top:0;
+  z-index:999;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(20px);
+  box-shadow:0 5px 30px rgba(0,0,0,0.08);
+  transition:all .3s ease;
 }
 
-.lang-option{
-  position:relative;
-  z-index:2;
-  border:none;
-  background:none;
-  padding:8px 22px;
-  cursor:pointer;
+.header-container{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:15px 20px;
+}
+
+/* LOGO */
+.logo-section{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo-section img{
+  height:48px;
+}
+
+.logo-text h2{
+  margin:0;
+  font-size:18px;
+  font-weight:700;
+}
+
+.logo-text span{
+  font-size:12px;
+  color:#666;
+}
+
+/* NAVIGATION */
+.nav-menu{
+  display:flex;
+  align-items:center;
+  gap:30px;
+}
+
+.nav-menu a{
+  text-decoration:none;
   font-weight:600;
   font-size:14px;
-  border-radius:30px;
-  transition:0.3s ease;
-}
-
-.lang-option:hover{
-  transform:scale(1.05);
-}
-
-.lang-option.active{
-  color:#fff;
-}
-
-.lang-slider{
-  position:absolute;
-  height:100%;
-  width:50%;
-  background:linear-gradient(135deg,#0a5cff,#003b8f);
-  border-radius:40px;
-  top:0;
-  left:0;
-  transition:all 0.4s cubic-bezier(.68,-0.55,.27,1.55);
-  box-shadow:0 5px 15px rgba(10,92,255,0.4);
-}
-
-.lang-option{
+  color:#222;
   position:relative;
-  z-index:2;
-  border:none;
-  background:none;
-  padding:8px 22px;
-  cursor:pointer;
-  font-weight:600;
-  font-size:14px;
-  border-radius:30px;
-  transition:0.3s ease;
+  transition:.3s;
 }
 
-.lang-option:hover{
-  transform:scale(1.05);
-}
-
-.lang-option.active{
-  color:#fff;
-}
-
-.lang-slider{
+.nav-menu a::after{
+  content:"";
   position:absolute;
-  height:100%;
-  width:50%;
-  background:linear-gradient(135deg,#0a5cff,#003b8f);
-  border-radius:40px;
-  top:0;
+  bottom:-6px;
   left:0;
-  transition:all 0.4s cubic-bezier(.68,-0.55,.27,1.55);
-  box-shadow:0 5px 15px rgba(10,92,255,0.4);
+  width:0;
+  height:2px;
+  background:#0A5CFF;
+  transition:.3s;
 }
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f7fb;color:#333}
-#topBar{background:#e6e6e6;padding:5px 15px;text-align:right;font-size:14px}
-#topBar span{cursor:pointer;margin-left:10px;border:1px solid #999;padding:3px 8px;background:#fff}
-header{background:#0a5cff;color:#fff;padding:10px 20px}
-header img{vertical-align:middle}
-header b{font-size:22px;margin-left:10px}
-nav{background:#003b8f;padding:8px;text-align:center}
-nav a{color:#fff;margin:0 15px;text-decoration:none;font-weight:bold}
+
+.nav-menu a:hover::after{
+  width:100%;
+}
+
+/* CTA BUTTON */
+.cta-btn{
+  background:linear-gradient(135deg,#0A5CFF,#0047CC);
+  color:#fff !important;
+  padding:10px 20px;
+  border-radius:30px;
+  box-shadow:0 5px 15px rgba(0,80,255,.4);
+  transition:.3s;
+}
+
+.cta-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(0,80,255,.5);
+}
+
+/* LANGUAGE SWITCH */
 .lang-btn{
+  border:none;
+  background:none;
+  padding:8px 18px;
+  font-weight:600;
   cursor:pointer;
-  margin-left:10px;
-  border:1px solid #999;
-  padding:4px 10px;
-  background:#fff;
-  transition:0.3s;
-}
-
-.lang-btn:hover{
-  background:#0a5cff;
-  color:#fff;
+  border-radius:20px;
+  position:relative;
+  z-index:2;
 }
 
 .lang-btn.active{
-  background:#0a5cff;
   color:#fff;
-  border-color:#0a5cff;
 }
-/* SLIDER */
-.hero{
-  width:100%;
-  height:500px;
-  overflow:hidden;
-  position:relative;
+
+
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
 }
-@media(max-width:768px){
-  .hero{
-    height:220px;
+
+.hamburger span{
+  width:25px;
+  height:3px;
+  background:#222;
+  transition:.3s;
+}
+
+.hamburger.active span:nth-child(1){
+  transform:rotate(45deg) translateY(8px);
+}
+.hamburger.active span:nth-child(2){
+  opacity:0;
+}
+.hamburger.active span:nth-child(3){
+  transform:rotate(-45deg) translateY(-8px);
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+  .nav-menu{
+    position:absolute;
+    top:80px;
+    left:0;
+    width:100%;
+    flex-direction:column;
+    background:white;
+    padding:30px 0;
+    gap:20px;
+    display:none;
   }
-}.slide{
-  min-width:100%;
-  height:100%;
-  background-size:cover;
-  background-repeat:no-repeat;
-  background-position:center;
-  flex-shrink:0;
+
+  .nav-menu.active{
+    display:flex;
+  }
+
+  .hamburger{
+    display:flex;
+  }
 }
+
+/* Sliding Background */
+.glider {
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    background: linear-gradient(135deg, #0a5cff, #00c6ff);
+    border-radius: 50px;
+    transition: all 0.35s ease;
+    left: 0;
+    top: 0;
+    z-index: 0;
+}
+
+/* Ensure text above glider */
+.lang-btn span {
+    position: relative;
+    z-index: 2;
+}
+
+/* Ripple Effect */
+.lang-btn::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.4);
+    border-radius: 50%;
+    transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.lang-btn:active::after {
+    width: 200px;
+    height: 200px;
+    opacity: 1;
+    transform: scale(1);
+    transition: 0.4s;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+
 .slides{
   display:flex;
   width:100%;
@@ -256,7 +329,19 @@ nav a{color:#fff;margin:0 15px;text-decoration:none;font-weight:bold}
   background-repeat:no-repeat;
   background-position:center;
   background-color:#000; /* खाली जगह black दिखे */
-}@media(max-width:768px){.hero{height:300px}}
+}
+  @media(max-width:768px)
+  {
+    .hero
+    {height:300px}
+  }
+  .hero
+  {
+  position:relative;
+  width:100%;
+  height:500px;
+  overflow:hidden;
+}
 
 section{padding:10px 10px;max-width:1100px;margin:auto}
 .cards{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
@@ -264,7 +349,35 @@ section{padding:10px 10px;max-width:1100px;margin:auto}
 .card h3{color:#0a5cff}
 #services h2{margin-top:0;}
 footer{background:#222;color:#fff;padding:20px;text-align:center}
-.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;padding:15px 18px;border-radius:50%;text-decoration:none;font-size:20px}
+.whatsapp{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  width:60px;
+  height:60px;
+  background:#25D366;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  box-shadow:0 8px 20px rgba(0,0,0,0.25);
+  transition:all 0.3s ease;
+  z-index:999;
+}
+
+.whatsapp:hover{
+  transform:translateY(-4px) scale(1.08);
+  box-shadow:0 12px 25px rgba(0,0,0,0.35);
+}
+  @keyframes pulse {
+  0% { box-shadow:0 0 0 0 rgba(37,211,102,0.7); }
+  70% { box-shadow:0 0 0 15px rgba(37,211,102,0); }
+  100% { box-shadow:0 0 0 0 rgba(37,211,102,0); }
+}
+
+.whatsapp{
+  animation:pulse 2s infinite;
+}
 /* Banner aur Services ke beech sirf 2cm gap */
 .hero {
     margin-bottom: 00px;   /* Banner के नीचे gap */
@@ -343,84 +456,50 @@ footer{background:#222;color:#fff;padding:20px;text-align:center}
 }
 </style>
 </head>
-<script>
-function toggleLang(lang) {
-
-  const elements = document.querySelectorAll("[data-lang]");
-  const btnEn = document.getElementById("btn-en");
-  const btnHi = document.getElementById("btn-hi");
-
-  elements.forEach(el => {
-    if (el.getAttribute("data-lang") === lang) {
-      el.style.display = "block";
-    } else {
-      el.style.display = "none";
-    }
-  });
-
-  // Active button highlight
-  if(lang === "en"){
-    btnEn.classList.add("active");
-    btnHi.classList.remove("active");
-  } else {
-    btnHi.classList.add("active");
-    btnEn.classList.remove("active");
-  }
-}
-</script>
-  <script>
-function setLang(lang){
-
-  const elements = document.querySelectorAll("[data-lang]");
-  const buttons = document.querySelectorAll(".lang-option");
-  const slider = document.getElementById("langSlider");
-
-  elements.forEach(el=>{
-    if(el.getAttribute("data-lang")===lang){
-      el.style.display="block";
-      el.style.opacity="0";
-      setTimeout(()=>{
-        el.style.transition="opacity 0.4s ease";
-        el.style.opacity="1";
-      },50);
-    }else{
-      el.style.display="none";
-    }
-  });
-
-  buttons.forEach(btn=>btn.classList.remove("active"));
-
-  if(lang==="en"){
-    buttons[0].classList.add("active");
-    slider.style.left="0%";
-  }else{
-    buttons[1].classList.add("active");
-    slider.style.left="50%";
-  }
-}
-</script>
 <body>
-  <div id="topBar">
-  <div class="lang-container">
-    <div class="lang-toggle">
-      <div class="lang-slider" id="langSlider"></div>
-      <button class="lang-option active" onclick="setLang('en')">EN</button>
-      <button class="lang-option" onclick="setLang('hi')">हिंदी</button>
-    </div>
-  </div>
-</div>
-  <header>
-  <img src="logo.png" height="100">
-  <b>Watech Engineering (UPJN) LLP</b>
-</header>
-<nav>
-  <a href="#services">Services</a>
-  <a href="#about">About</a>
-  <a href="#mission">Mission</a>
-  <a href="#vision">Vision</a>
-  <a href="#contact">Contact</a>
-</nav>
+    <header class="corporate-header">
+  <div class="header-container">
 
+    <!-- Logo Section -->
+    <div class="logo-section">
+      <img src="logo1.png" alt="Watech Engineering Logo">
+      <div class="logo-text">
+        <h2>Watech Engineering</h2>
+        <span>Water • Wastewater • Storm Water Experts</span>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-menu">
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="cta-btn">Get Proposal</a>
+    </nav>
+
+    <!-- Right Controls -->
+    <div class="header-right">
+
+      <!-- Language Switch -->
+      <div class="lang-switch">
+        <div class="glider"></div>
+
+        <button class="lang-btn active" onclick="toggleLang('en', this)">EN</button>
+        <button class="lang-btn" onclick="toggleLang('hi', this)">हिन्दी</button>
+      </div>
+
+      <!-- Mobile Toggle -->
+      <div class="hamburger" onclick="toggleMenu(this)">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
 <div class="hero" id="slider">
 <div class="caption" id="caption"></div>
 <div class="dots" id="dots"></div>
@@ -445,7 +524,7 @@ function setLang(lang){
 <div class="cards">
 <div class="card"><h3>Water Supply Management Solution</h3><p>We Provide Urban & Rural Water Supply, Planning, Design & Execution</p></div>
 <div class="card"><h3>Waste Water Management Solution</h3><p>We Provide Sewerage Network, STP Designing & Execution</p></div>
-<div class="card"><h3>RO Water Management Solution</h3><p>We Best Purifying the Water in High Standards of ISO norms, Adding Good Minarals, Bottling, Packaging & Distribution</p></div>
+<div class="card"><h3>RO Water Management Solution</h3><p>We Provide Good Purified Water in High Standards of ISO norms, Adding Required Minarals, Bottling and Packaging Then Distribution</p></div>
 <div class="card"><h3>Storm Water Management Solution</h3><p>We Provide Drainage System, Flood Control Systems Designing & Execution</p></div>
 <div class="card"><h3>Structural Designing Solution</h3><p>We Provide Residential, Commercial, Structural Survey, Designing/Drawing & Execution</p></div>
 </div>
@@ -481,121 +560,45 @@ function setLang(lang){
 </section>
 
 <footer>&copy; 2026 Watech Engineering (UPJN) LLP. All Rights Reserved.</footer>
-<a class="whatsapp" href="https://wa.me/919559222140" target="_blank">💬</a>
+<a class="whatsapp" href="https://wa.me/919559222140" target="_blank" aria-label="Chat on WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="26" height="26" fill="white">
+    <path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.5 2.1 7.9L.4 31.6l7.9-2.1c2.3 1.3 4.9 2 7.7 2 8.6 0 15.6-7 15.6-15.6S24.6.4 16 .4zm0 28.7c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5C3.8 20.7 3 18.4 3 16 3 8.8 8.8 3 16 3s13 5.8 13 13-5.8 13-13 13zm7.2-9.9c-.4-.2-2.4-1.2-2.7-1.3-.4-.1-.6-.2-.9.2-.2.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-2-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.1-.8.1-.1.4-.5.6-.7.2-.2.3-.4.4-.6.1-.2 0-.4 0-.6 0-.2-.9-2.2-1.3-3-.3-.7-.6-.6-.9-.6h-.8c-.3 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 3s1.3 3.5 1.5 3.8c.2.4 2.5 3.8 6.1 5.4.8.4 1.5.6 2 .8.8.2 1.6.2 2.2.1.7-.1 2.4-1 2.7-2 .3-1 .3-1.8.2-2-.1-.2-.3-.3-.7-.5z"/>
+  </svg>
+</a>
 
   <script>
-const slidesContainer = document.querySelector(".slides");
-const slides = document.querySelectorAll(".slide");
-
-let index = 1;   // क्योंकि 0 index clone है
-const totalSlides = slides.length;
-const speed = 700;
-let autoSlide;
-let paused = false;
-
-/* Initial Position */
-slidesContainer.style.transform = "translateX(-100%)";
-
-/* Next */
-function nextSlide() {
-  if (index >= totalSlides - 1) return;
-  index++;
-  slidesContainer.style.transition = speed + "ms ease";
-  slidesContainer.style.transform = `translateX(-${index * 100}%)`;
-}
-
-/* Prev */
-function prevSlide() {
-  if (index <= 0) return;
-  index--;
-  slidesContainer.style.transition = speed + "ms ease";
-  slidesContainer.style.transform = `translateX(-${index * 100}%)`;
-}
-
-/* Infinite Loop Fix */
-slidesContainer.addEventListener("transitionend", () => {
-
-  // Last clone पर पहुंचे
-  if (index === totalSlides - 1) {
-    slidesContainer.style.transition = "none";
-    index = 1;
-    slidesContainer.style.transform = "translateX(-100%)";
-  }
-
-  // First clone पर पहुंचे
-  if (index === 0) {
-    slidesContainer.style.transition = "none";
-    index = totalSlides - 2;
-    slidesContainer.style.transform = `translateX(-${index * 100}%)`;
-  }
-
-});
-
-/* Auto */
-function startAuto() {
-  autoSlide = setInterval(() => {
-    if (!paused) nextSlide();
-  }, 4000);
-}
-startAuto();
-
-/* Pause */
-function togglePause(){
-  paused = !paused;
-  document.querySelector(".pause").innerText = paused ? "▶" : "⏸";
-}
-
-/* Swipe */
-let startX = 0;
-const slider = document.getElementById("slider");
-
-slider.addEventListener("touchstart", e => {
-  startX = e.touches[0].clientX;
-});
-
-slider.addEventListener("touchend", e => {
-  let endX = e.changedTouches[0].clientX;
-  if (startX - endX > 50) nextSlide();
-  if (endX - startX > 50) prevSlide();
-});
-</script>
-  <script>
-function setLang(lang){
+function toggleLang(lang, button){
 
   const elements = document.querySelectorAll("[data-lang]");
-  const buttons = document.querySelectorAll(".lang-option");
-  const slider = document.getElementById("langSlider");
+  const buttons = document.querySelectorAll(".lang-btn");
+  const glider = button.closest(".lang-switch").querySelector(".glider");
 
-  elements.forEach(el=>{
-    if(el.getAttribute("data-lang")===lang){
-      el.style.display="block";
-      el.style.opacity="0";
-      setTimeout(()=>{
-        el.style.transition="opacity 0.4s ease";
-        el.style.opacity="1";
-      },50);
-    }else{
-      el.style.display="none";
-    }
+  elements.forEach(el => {
+    el.style.display = (el.getAttribute("data-lang") === lang) ? "block" : "none";
   });
 
-  buttons.forEach(btn=>btn.classList.remove("active"));
+  buttons.forEach(btn => btn.classList.remove("active"));
+  button.classList.add("active");
 
-  if(lang==="en"){
-    buttons[0].classList.add("active");
-    slider.style.left="0%";
-  }else{
-    buttons[1].classList.add("active");
-    slider.style.left="50%";
-  }
+  glider.style.left = (lang === "hi") ? "50%" : "4px";
+
+  localStorage.setItem("selectedLang", lang);
 }
-</script>
+
+function toggleMenu(el){
+  el.classList.toggle("active");
+  document.querySelector(".nav-menu").classList.toggle("active");
+}
+
+window.addEventListener("DOMContentLoaded", function(){
+  const savedLang = localStorage.getItem("selectedLang") || "en";
+  const btn = document.querySelector(`.lang-btn[onclick*="${savedLang}"]`);
+  if(btn){
+    toggleLang(savedLang, btn);
+  }
+});
+  </script>
 </body>
 </html>
-
-
-
-
-
 
 

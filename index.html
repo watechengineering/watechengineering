@@ -317,6 +317,7 @@
   .hero{
   height:100vh;
   width:100%;
+  overflow:hidden;
 }
   .slider{
   position:relative;
@@ -333,12 +334,23 @@
 
 .slide{
   min-width:100%;
-  height:100%;
-background-size:contain;
-background-repeat:no-repeat;
-background-color:#000;
-  background-position:center;
+  height:100vh;
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
   position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+}
+
+/* Extra Sharp Rendering */
+.slide::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  z-index:1;
 }
 
 /* Premium Dark Gradient Overlay */
@@ -349,22 +361,21 @@ background-color:#000;
   width:100%;
   height:100%;
   background:linear-gradient(to right, rgba(0,0,0,.75), rgba(0,0,0,.2));
-  backdrop-filter:blur(2px);
   z-index:2;
 }
 
 /* Caption Styling */
 .caption{
   position:absolute;
-  bottom:80px;
+  bottom:100px;
   left:8%;
   color:#fff;
-  font-size:42px;
+  font-size:48px;
   font-weight:800;
-  max-width:600px;
+  max-width:650px;
   z-index:3;
   line-height:1.2;
-  animation:fadeUp 1s ease;
+  text-shadow:0 5px 20px rgba(0,0,0,0.6);
 }
 
 @keyframes fadeUp{
@@ -713,4 +724,5 @@ startAuto();
 </script>
 </body>
 </html>
+
 

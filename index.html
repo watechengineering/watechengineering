@@ -335,33 +335,18 @@
 .slide{
   min-width:100%;
   height:100vh;
-  background-size:cover;
+  background-size:contain;
   background-position:center center;
   background-repeat:no-repeat;
+  background-color:#000;
   position:relative;
   display:flex;
   align-items:center;
   justify-content:flex-start;
 }
 
-/* Extra Sharp Rendering */
-.slide::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.45);
-  z-index:1;
-}
-
-/* Premium Dark Gradient Overlay */
 .overlay{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:linear-gradient(to right, rgba(0,0,0,.75), rgba(0,0,0,.2));
-  z-index:2;
+  display:none;
 }
 
 /* Caption Styling */
@@ -724,5 +709,6 @@ startAuto();
 </script>
 </body>
 </html>
+
 
 
